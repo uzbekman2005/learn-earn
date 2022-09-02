@@ -17,17 +17,21 @@ func main() {
 		globalfunctions.WriteErrorsToFile(err)
 		panic("Registration Failed")
 	}
-
+	globalfunctions.SystemClear()
 	for {
 		frontend.MainMune()
 		choose = globalfunctions.InputNum(">>> ")
 		if choose == 1 {
+			globalfunctions.SystemClear()
 			frontend.UserProfile()
 		} else if choose == 2 {
-			fmt.Println("HighScore will be displayed")
+			globalfunctions.SystemClear()
+			globalfunctions.ShowHighSocers()
 		} else if choose == 3 {
+			globalfunctions.SystemClear()
 			globalfunctions.UpdateUserInfo()
 		} else if choose == 4 {
+			globalfunctions.SystemClear()
 			fmt.Println("Play Game")
 		} else {
 			break

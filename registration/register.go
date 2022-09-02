@@ -39,6 +39,7 @@ func SignUpMain() int {
 }
 
 func LogInMain() int {
+	globalfunctions.SystemClear()
 	for {
 		frontend.LogInMenu()
 		userNameinput := globalfunctions.InputString("Username: ")
@@ -53,6 +54,7 @@ func LogInMain() int {
 				return -1
 			}
 		}
+		globalfunctions.SystemClear()
 		frontend.WasRegistered()
 		choose = globalfunctions.InputNum("> ")
 		if choose == 2 {

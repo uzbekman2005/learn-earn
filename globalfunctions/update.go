@@ -16,6 +16,7 @@ var choose int
 // Using this funtion user can update his/her info
 func UpdateUserInfo() {
 	for {
+		SystemClear()
 		frontend.UpdateMenu()
 		choose = InputNum(">>> ")
 		if choose == 1 {
@@ -33,6 +34,7 @@ func UpdateUserInfo() {
 		} else {
 			// Changes are written to files user.txt username.json
 			WriteNewUserToFile()
+			SystemClear()
 			break
 		}
 

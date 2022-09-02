@@ -3,3 +3,15 @@
 2022-09-02 16:09:38.615127873 +0500 +05 m=+19.319023305, Error type: registration failed
 2022-09-02 16:59:17.385191971 +0500 +05 m=+29.411440314, Error type: registration failed
 2022-09-02 18:32:56.998429021 +0500 +05 m=+232.393118607, Error type: read /home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt: bad file descriptor
+2022-09-02 21:01:22.08295163 +0500 +05 m=+82.364233151, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 21:01:22.083172516 +0500 +05 m=+82.364454027, Error type: unexpected end of JSON input
+2022-09-02 23:00:53.032508596 +0500 +05 m=+1296.846655176, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 23:00:53.032814337 +0500 +05 m=+1296.846960905, Error type: unexpected end of JSON input
+2022-09-02 23:04:03.400696362 +0500 +05 m=+100.829255240, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 23:04:03.400906119 +0500 +05 m=+100.829465001, Error type: unexpected end of JSON input
+2022-09-02 23:06:21.375709058 +0500 +05 m=+238.804267940, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 23:06:21.37577494 +0500 +05 m=+238.804333804, Error type: unexpected end of JSON input
+2022-09-02 23:10:54.773967233 +0500 +05 m=+17.950961711, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 23:10:54.774182397 +0500 +05 m=+17.951176816, Error type: unexpected end of JSON input
+2022-09-02 23:12:14.758280149 +0500 +05 m=+14.921307537, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
+2022-09-02 23:12:14.758512223 +0500 +05 m=+14.921539560, Error type: unexpected end of JSON input
