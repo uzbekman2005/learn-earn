@@ -1,0 +1,3 @@
+azizbek,2005
+alish,Alish
+anvar,1234

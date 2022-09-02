@@ -1,0 +1,3 @@
+2022-09-02 16:09:38.614783824 +0500 +05 m=+19.318679240, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/asqar.json: no such file or directory
+2022-09-02 16:09:38.615091634 +0500 +05 m=+19.318987033, Error type: unexpected end of JSON input
+2022-09-02 16:09:38.615127873 +0500 +05 m=+19.319023305, Error type: registration failed
