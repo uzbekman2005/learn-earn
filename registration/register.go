@@ -27,7 +27,7 @@ func SignUpMain() int {
 	config.CurrentUser.First_name = globalfunctions.InputString("First name: ")
 	config.CurrentUser.Last_name = globalfunctions.InputString("Last name: ")
 	config.CurrentUser.Username = globalfunctions.GetUserName()
-	config.CurrentUser.Password = globalfunctions.InputString("Password: ")
+	config.CurrentUser.Password = globalfunctions.GetPassword()
 	config.CurrentUser.Score = 0
 	config.CurrentUser.HighScore = 0
 	config.CurrentUser.Country = globalfunctions.InputString("Country: ")

@@ -29,7 +29,6 @@ func UpdateUserInfo() {
 		} else if choose == 5 {
 			updatePassword(config.CurrentUser.Username)
 		} else if choose == 6 {
-			//Username will be changed using UpdateUsername
 			UpdateUsername(config.CurrentUser.Password)
 		} else {
 			// Changes are written to files user.txt username.json
@@ -49,6 +48,28 @@ func GetUserName() string {
 		}
 	}
 }
+func GetPassword() string {
+	temp := ""
+	for {
+		frontend.PasswordRequirement()
+		temp = InputString("Password: ")
+		if ValidPassword(temp){
+			return temp
+		}
+	}
+}
+
+func ValidPassword(password string) bool {
+	// Password to be valid it should be at least 5 in length
+	// don't contain commas
+	if len(password) < 5 || strings.Contains(password, ",") || strings.Contains(password, " "){
+		return false
+	}
+	return true
+
+}
+
+
 func UpdateUsername(password string) {
 	newUsername := GetUserName()
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
@@ -70,7 +91,7 @@ func UpdateUsername(password string) {
 
 // This Function is used to update password
 func updatePassword(username string) {
-	newPassword := InputString("New password: ")
+	newPassword := GetPassword()
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
 	content, err := os.ReadFile(filename)
 	CheckErr(err)

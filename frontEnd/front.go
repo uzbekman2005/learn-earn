@@ -110,5 +110,12 @@ func DateFormat() {
 	fmt.Println("+----------------------------------------------------+")
 	fmt.Println("+- Date format is yyyy-mm-dd                        -+")
 	fmt.Println("+----------------------------------------------------+")
+}
 
+func PasswordRequirement(){
+	fmt.Println("+----------------------------------------------------+")
+	fmt.Println("+- 	        Password requirements               -+")
+	fmt.Println("+- 1. at least 5 in length                          -+")
+	fmt.Println("+- 2. comma (',') and spaces are not allowed        -+")
+	fmt.Println("+----------------------------------------------------+")
 }
