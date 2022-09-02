@@ -3,10 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
-	"learn/config"
+	frontend "learn/frontEnd"
 	"learn/globalfunctions"
 	"learn/registration"
 )
+
+var choose int
 
 func main() {
 	isRegistrationSucceded := registration.RegistrationMain()
@@ -15,6 +17,20 @@ func main() {
 		globalfunctions.WriteErrorsToFile(err)
 		panic("Registration Failed")
 	}
-	fmt.Println("Succesfully Signed in")
-	fmt.Println(config.CurrentUser)
+
+	for {
+		frontend.MainMune()
+		choose = globalfunctions.InputNum(">>> ")
+		if choose == 1 {
+			frontend.UserProfile()
+		} else if choose == 2 {
+			fmt.Println("HighScore will be displayed")
+		} else if choose == 3 {
+			globalfunctions.UpdateUserInfo()
+		} else if choose == 4 {
+			fmt.Println("Play Game")
+		} else {
+			break
+		}
+	}
 }

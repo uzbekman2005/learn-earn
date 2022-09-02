@@ -5,15 +5,16 @@ import (
 	"fmt"
 	"learn/config"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 	"time"
 	"unicode"
 )
 
-// var err error
-// var file os.File
 
+// This funcion is used To write occured errors to error.txt file 
+// This is done to make it easier to debug
 func WriteErrorsToFile(err error) {
 	file, errr := os.OpenFile("/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/errors.txt", os.O_RDONLY|os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if errr != nil {
@@ -23,6 +24,9 @@ func WriteErrorsToFile(err error) {
 	file.WriteString(fmt.Sprintf("%v, Error type: %v\n", time.Now(), err))
 }
 
+// This Function is used to read int info from the Console
+// This funcion will only take int 
+// if it is string it will not take it and reasks to enter int
 func InputNum(hint string) int {
 	var temp string
 
@@ -37,6 +41,7 @@ func InputNum(hint string) int {
 	}
 }
 
+// This Function is used to read string info from console
 func InputString(hint string) string {
 	fmt.Print(hint)
 	var temp string
@@ -44,6 +49,8 @@ func InputString(hint string) string {
 	return temp
 }
 
+// This function handles errors 
+// if Error Exist it will Write to errors.txt file and print theerror
 func CheckErr(err error) {
 	if err != nil {
 		WriteErrorsToFile(err)
@@ -51,11 +58,10 @@ func CheckErr(err error) {
 	}
 }
 
-func UpdateUserInfo() {
-	// This Function will be writtend afte person structis created
-	// func update Menu is Ready
-}
 
+
+// This Function is used Whether username is valid and 
+// unique with the help of IsUniqueUserName()
 func IsValidUserName(username string) bool {
 	if !unicode.IsLetter(rune(username[0])) {
 		return false
@@ -68,6 +74,7 @@ func IsValidUserName(username string) bool {
 	return true && IsUniqueUserName(username)
 }
 
+// This function Checks whether the username was used or not
 func IsUniqueUserName(username string) bool {
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
 	info, err := os.ReadFile(filename)
@@ -82,6 +89,7 @@ func IsUniqueUserName(username string) bool {
 	return true
 }
 
+// This funtion converts CurrentUser to json and write it to username.json file
 func WriteNewUserToFile() {
 	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", config.CurrentUser.Username)
 	data, err := json.Marshal(config.CurrentUser)
@@ -94,13 +102,16 @@ func WriteNewUserToFile() {
 func WriteToUserstxt() {
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
 	f, err := os.OpenFile(filename, os.O_RDONLY|os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	CheckErr(err)
+	defer f.Close()
+
 	f.WriteString(fmt.Sprintf("%s,%s\n", config.CurrentUser.Username, config.CurrentUser.Password))
 }
 
+//This function checks whether username and password is right
 func IsRightLogin(username, password string) bool {
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
 	info, err := os.ReadFile(filename)
@@ -108,19 +119,26 @@ func IsRightLogin(username, password string) bool {
 	temp := strings.Split(string(info), "\n")
 	for _, elem := range temp {
 		oneUser := strings.Split(string(elem), ",")
-		if oneUser[0] == username && password == oneUser[1]{
+		if oneUser[0] == username && password == oneUser[1] {
 			return true
 		}
 	}
 	return false
 }
 
-// This function read from Users/Infividualusers/username.json and 
+// This function read from Users/Infividualusers/username.json and
 // converts it to struct and initialize it to currentUser
 func ReadSpeicificUser(username string) error {
 	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", username)
 	content, err := os.ReadFile(filename)
 	CheckErr(err)
-	err = json.Unmarshal(content,  &config.CurrentUser)
+	err = json.Unmarshal(content, &config.CurrentUser)
 	return err
+}
+
+// This function is used to cleaer console screen
+func SystemClear() {
+	c := exec.Command("clear")
+	c.Stdout = os.Stdout
+	c.Run()
 }

@@ -1,14 +1,18 @@
 package frontend
 
-import "fmt"
+import (
+	"fmt"
+	"learn/config"
+)
 
 func MainMune() {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Println("+- 				 Choose one                      -+")
-	fmt.Println("+- 		1. You Profile                           -+")
-	fmt.Println("+- 		2. HighScore                             -+")
-	fmt.Println("+- 		3. Play Game                             -+")
-	fmt.Println("+- 		4. Exit                                  -+")
+	fmt.Println("+- 			 Choose one                 -+")
+	fmt.Println("+-		1. Your Profile                     -+")
+	fmt.Println("+-		2. HighScore                        -+")
+	fmt.Println("+-		3. Update Profile                   -+")
+	fmt.Println("+-		4. Play Game                        -+")
+	fmt.Println("+-		5. Exit                             -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
@@ -20,16 +24,16 @@ func SignUpMenu() {
 
 func LogInMenu() {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Println("+- To login up succesfully enter all info asked     -+")
+	fmt.Println("+- To log in succesfully enter all info asked       -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
 func RegistrationMenu() {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Println("+- 	             Registration Menu               -+")
-	fmt.Println("+- 	          1. Sign up                         -+")
-	fmt.Println("+- 	          2. Log in                          -+")
-	fmt.Println("+- 	          3. Exit                            -+")
+	fmt.Println("+- 	            Registration Menu               -+")
+	fmt.Println("+- 	         1. Sign up                         -+")
+	fmt.Println("+- 	         2. Log in                          -+")
+	fmt.Println("+- 	         3. Exit                            -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
@@ -54,7 +58,22 @@ func SuccesSignUp() {
 }
 
 func UserProfile() {
-	// This part will be wrttien after user struct created
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Full Name  |  %-35s |\n", fmt.Sprintf("%s %s", config.CurrentUser.Last_name, config.CurrentUser.First_name))
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Username   |  %-35s |\n", config.CurrentUser.Username)
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Country    |  %-35s |\n", config.CurrentUser.Country)
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Password   |  %-35s |\n", config.CurrentUser.Password)
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Birth date |  %-35s |\n", config.CurrentUser.DateOfBirth)
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  Score      |  %-35d |\n", config.CurrentUser.Score)
+	fmt.Println("+-------------+--------------------------------------+")
+	fmt.Printf("|  High Score |  %-35d |\n", config.CurrentUser.HighScore)
+	fmt.Println("+--------------+-------------------------------------+")
+	fmt.Println()
 }
 
 func UpdateMenu() {
@@ -62,12 +81,12 @@ func UpdateMenu() {
 	fmt.Println("+- 	                 Update page                 -+")
 	fmt.Println("+- 	          1. First name                      -+")
 	fmt.Println("+- 	          2. Last name                       -+")
-	fmt.Println("+- 	          4. Country                         -+")
-	fmt.Println("+- 	          5. Date of birth                   -+")
-	fmt.Println("+- 	          6. Phone number                    -+")
+	fmt.Println("+- 	          3. Country                         -+")
+	fmt.Println("+- 	          4. Date of birth                   -+")
+	fmt.Println("+- 	          5. Password                        -+")
+	fmt.Println("+- 	          6. Username                        -+")
 	fmt.Println("+- 	          7. Exit                            -+")
 	fmt.Println("+----------------------------------------------------+")
-
 }
 
 func UsernameRequirement(){
@@ -85,4 +104,11 @@ func WasRegistered() {
 	fmt.Println("+- 1. Yes                                           -+")
 	fmt.Println("+- 2. No I will register now                        -+")
 	fmt.Println("+----------------------------------------------------+")
+}
+
+func DateFormat() {
+	fmt.Println("+----------------------------------------------------+")
+	fmt.Println("+- Date format is yyyy-mm-dd                        -+")
+	fmt.Println("+----------------------------------------------------+")
+
 }
