@@ -15,3 +15,4 @@
 2022-09-02 23:10:54.774182397 +0500 +05 m=+17.951176816, Error type: unexpected end of JSON input
 2022-09-02 23:12:14.758280149 +0500 +05 m=+14.921307537, Error type: open /home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/.json: no such file or directory
 2022-09-02 23:12:14.758512223 +0500 +05 m=+14.921539560, Error type: unexpected end of JSON input
+2022-09-03 17:48:33.663701611 +0500 +05 m=+44.770425571, Error type: open q_and_ans.txt: no such file or directory

@@ -14,7 +14,6 @@ var allUsers []config.User
 func ShowHighSocers() {
 	ListUsers()
 	sortAllUsers()
-	fmt.Println(allUsers)
 	// info is shown in table format
 	fmt.Println("+----+---------------+----------------+-------------+----------+")
 	fmt.Println("| NO |  Name         |  Country       |  Birth date |  Score   |")
