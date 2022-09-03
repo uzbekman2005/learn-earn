@@ -2,7 +2,7 @@ package game
 
 import (
 	frontend "learn/frontEnd"
-	polychudis "learn/game/poly-chudis"
+	polychudis "learn/game/polychudis"
 	"learn/globalfunctions"
 )
 
