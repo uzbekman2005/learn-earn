@@ -14,13 +14,14 @@ var allUsers []config.User
 func ShowHighSocers() {
 	ListUsers()
 	sortAllUsers()
+	fmt.Println(allUsers)
 	// info is shown in table format
-	fmt.Println("+---------------+----------------+-------------+----------+")
-	fmt.Println("|  Name         |  Country       |  Birth date |  Score   |")
-	fmt.Println("+---------------+----------------+-------------+----------+")
+	fmt.Println("+----+---------------+----------------+-------------+----------+")
+	fmt.Println("| NO |  Name         |  Country       |  Birth date |  Score   |")
+	fmt.Println("+----+---------------+----------------+-------------+----------+")
 	for i := 0; i < len(allUsers) && i < 3; i++{
-		fmt.Printf("| %-14s| %-14s | %-11s | %-8d |\n", allUsers[i].First_name, allUsers[i].Country, allUsers[i].DateOfBirth, allUsers[i].Score)
-		fmt.Println("+---------------+----------------+-------------+----------+")
+		fmt.Printf("| %2d | %-14s| %-14s | %-11s | %-8d |\n", i + 1, allUsers[i].First_name, allUsers[i].Country, allUsers[i].DateOfBirth, allUsers[i].Score)
+		fmt.Println("+----+---------------+----------------+-------------+----------+")
 	}
 }
 
@@ -29,8 +30,8 @@ func sortAllUsers() {
 	for i := 0; i < len(allUsers)-1; i++ {
 		max = i
 		for j := i + 1; j < len(allUsers); j++ {
-			if allUsers[i].Score > allUsers[max].Score {
-				max = i
+			if allUsers[j].Score > allUsers[max].Score {
+				max = j
 			}
 		}
 		if max != i {
@@ -55,6 +56,7 @@ func GetAllUsernames() []string {
 
 func ListUsers() {
 	listUsers := GetAllUsernames()
+	allUsers = []config.User{}
 	for i := 0; i < len(listUsers); i++ {
 		elem := listUsers[i]
 		filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", string(elem))

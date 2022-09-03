@@ -2,8 +2,8 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	frontend "learn/frontEnd"
+	"learn/game"
 	"learn/globalfunctions"
 	"learn/registration"
 )
@@ -32,7 +32,7 @@ func main() {
 			globalfunctions.UpdateUserInfo()
 		} else if choose == 4 {
 			globalfunctions.SystemClear()
-			fmt.Println("Play Game")
+			game.GamesMain() 
 		} else {
 			break
 		}
