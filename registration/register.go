@@ -32,7 +32,7 @@ func SignUpMain() int {
 	config.CurrentUser.HighScore = 0
 	config.CurrentUser.Country = globalfunctions.InputString("Country: ")
 	config.CurrentUser.DateOfBirth = globalfunctions.InputDate("Date of birth: ")
-	globalfunctions.WriteNewUserToFile()
+	globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
 	globalfunctions.WriteToUserstxt()
 	frontend.SuccesSignUp()
 	return 1
@@ -44,7 +44,8 @@ func LogInMain(isSecon bool) int {
 		frontend.LogInMenu()
 		userNameinput := globalfunctions.InputString("Username: ")
 		password := globalfunctions.InputString("Password: ")
-		if globalfunctions.IsRightLogin(userNameinput, password) {
+		if globalfunctions.IsRightLogin(userNameinput, password) && userNameinput != config.CurrentUser.Username{
+
 			err := globalfunctions.ReadSpeicificUser(userNameinput, isSecon)
 			globalfunctions.CheckErr(err)
 			if err == nil {

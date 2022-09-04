@@ -33,7 +33,7 @@ func UpdateUserInfo() {
 			UpdateUsername(config.CurrentUser.Password)
 		} else {
 			// Changes are written to files user.txt username.json
-			WriteNewUserToFile()
+			WriteNewUserToFile(config.CurrentUser.Username, false)
 			SystemClear()
 			break
 		}

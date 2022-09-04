@@ -90,9 +90,15 @@ func IsUniqueUserName(username string) bool {
 }
 
 // This funtion converts CurrentUser to json and write it to username.json file
-func WriteNewUserToFile() {
-	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", config.CurrentUser.Username)
-	data, err := json.Marshal(config.CurrentUser)
+func WriteNewUserToFile(username string, isSecond bool) {
+	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", username)
+	var data []byte
+	var err error
+	if !isSecond {
+		data, err = json.Marshal(config.CurrentUser)
+	}else {
+		data, err = json.Marshal(config.SecondUser)
+	}
 	CheckErr(err)
 	err = os.WriteFile(filename, data, 0644)
 	CheckErr(err)

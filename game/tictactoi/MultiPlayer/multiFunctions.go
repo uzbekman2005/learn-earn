@@ -41,12 +41,48 @@ func MultiPlayerPlay() int {
 		if !isNext {
 			continue
 		}
+		res := IsWin(Board)
+		if res == 1 {
+			globalfunctions.SystemClear()
+			if rounds%2 == 0 {
+				config.SecondUser.Score += 20
+				config.SecondUser.HighScore += 20
+				tictacconsole.YouWin(config.SecondUser.First_name)
+				globalfunctions.WriteNewUserToFile(config.SecondUser.Username, true)
+			} else {
+				config.CurrentUser.Score += 20
+				config.CurrentUser.HighScore += 20
+				tictacconsole.YouWin(config.CurrentUser.First_name)
+				globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
+			}
+			return 1
+		}else if IsEqual(Board){
+			return 1
+		}
 		rounds++
 		if rounds == 10 {
 			break
 		}
 	}
 	return 1
+}
+
+func IsWin(board [][]string) int {
+	for i := 0; i < 3; i++ {
+		if board[i][0] == board[i][1] && board[i][2] == board[i][0] && board[i][0] != "-" {
+			return 1
+		}
+		if board[2][i] == board[1][i] && board[2][i] == board[0][i] && board[0][i] != "-" {
+			return 1
+		}
+	}
+	if board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != "-" {
+		return 1
+	}
+	if board[1][1] == board[0][2] && board[0][2] == board[2][0] && board[1][1] != "-" {
+		return 1
+	}
+	return 0
 }
 
 func PutTheAnswer(num int, ans string) bool {
@@ -61,4 +97,22 @@ func PutTheAnswer(num int, ans string) bool {
 		return true
 	}
 	return false
+}
+
+func IsEqual(board [][]string) bool {
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			if board[i][j] == "-" {
+				return false
+			}
+		}
+	}
+	config.CurrentUser.Score += 10
+	config.CurrentUser.HighScore += 10
+	
+	config.SecondUser.Score += 10
+	config.SecondUser.HighScore += 10
+	globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
+	globalfunctions.WriteNewUserToFile(config.SecondUser.Username, true)
+	return true
 }
