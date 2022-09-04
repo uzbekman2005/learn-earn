@@ -3,6 +3,7 @@ package game
 import (
 	frontend "learn/frontEnd"
 	polychudis "learn/game/polychudis"
+	"learn/game/tictactoi"
 	"learn/globalfunctions"
 )
 
@@ -13,9 +14,11 @@ func GamesMain() {
 		globalfunctions.SystemClear()
 		frontend.GamesMenu()
 		choose = globalfunctions.InputNum("> ")
-		if choose == 1{
+		if choose == 1 {
 			polychudis.MainPolichudis()
-		}else{
+		} else if choose == 2 {
+			tictactoi.TicTacMain()
+		} else {
 			break
 		}
 	}

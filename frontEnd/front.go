@@ -41,13 +41,14 @@ func GamesMenu() {
 	fmt.Println("+----------------------------------------------------+")
 	fmt.Println("+- 	                 Games list                  -+")
 	fmt.Println("+- 	          1. Polychudis                      -+")
-	fmt.Println("+- 	          2. Exit                            -+")
+	fmt.Println("+- 	          2. Tic Tai Toi                     -+")
+	fmt.Println("+- 	          3. Exit                            -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
 func SuccesLogin() {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Printf("+- %-48s -+\n","You have successfully loged in")
+	fmt.Printf("+- %-48s -+\n", "You have successfully loged in")
 	fmt.Println("+----------------------------------------------------+")
 }
 
@@ -89,12 +90,12 @@ func UpdateMenu() {
 	fmt.Println("+----------------------------------------------------+")
 }
 
-func UsernameRequirement(){
+func UsernameRequirement() {
 	fmt.Println("+----------------------------------------------------+")
 	fmt.Println("+- 	        Username requirements                -+")
 	fmt.Println("+- 1. Uniqueness                                    -+")
 	fmt.Println("+- 2.	        Allowed characters                   -+")
-	fmt.Println("+-   Letters, arabic numbers, underscore('_')       -+")   
+	fmt.Println("+-   Letters, arabic numbers, underscore('_')       -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
@@ -112,7 +113,7 @@ func DateFormat() {
 	fmt.Println("+----------------------------------------------------+")
 }
 
-func PasswordRequirement(){
+func PasswordRequirement() {
 	fmt.Println("+----------------------------------------------------+")
 	fmt.Println("+- 	        Password requirements               -+")
 	fmt.Println("+- 1. at least 5 in length                          -+")

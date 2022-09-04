@@ -12,3 +12,4 @@ type User struct {
 }
 
 var CurrentUser User
+var SecondUser User

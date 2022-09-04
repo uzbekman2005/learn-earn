@@ -15,7 +15,7 @@ func RegistrationMain() int {
 		if choose == 1 {
 			return SignUpMain()
 		} else if choose == 2 {
-			return LogInMain()
+			return LogInMain(false)
 		} else {
 			break
 		}
@@ -38,14 +38,14 @@ func SignUpMain() int {
 	return 1
 }
 
-func LogInMain() int {
+func LogInMain(isSecon bool) int {
 	globalfunctions.SystemClear()
 	for {
 		frontend.LogInMenu()
 		userNameinput := globalfunctions.InputString("Username: ")
 		password := globalfunctions.InputString("Password: ")
 		if globalfunctions.IsRightLogin(userNameinput, password) {
-			err := globalfunctions.ReadSpeicificUser(userNameinput)
+			err := globalfunctions.ReadSpeicificUser(userNameinput, isSecon)
 			globalfunctions.CheckErr(err)
 			if err == nil {
 				frontend.SuccesLogin()

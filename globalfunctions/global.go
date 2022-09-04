@@ -128,11 +128,15 @@ func IsRightLogin(username, password string) bool {
 
 // This function read from Users/Infividualusers/username.json and
 // converts it to struct and initialize it to currentUser
-func ReadSpeicificUser(username string) error {
+func ReadSpeicificUser(username string, isSecon bool) error {
 	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", username)
 	content, err := os.ReadFile(filename)
 	CheckErr(err)
-	err = json.Unmarshal(content, &config.CurrentUser)
+	if isSecon{
+		err = json.Unmarshal(content, &config.SecondUser)
+	}else{
+		err = json.Unmarshal(content, &config.CurrentUser)
+	}
 	return err
 }
 

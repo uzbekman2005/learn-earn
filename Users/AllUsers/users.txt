@@ -2,3 +2,4 @@ azizbek,tplink2001
 alish,Alish
 anvar,1234
 zufar,12345
+shahzod,shah2005
