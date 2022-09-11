@@ -48,7 +48,7 @@ func ShowBoard(board [][]string) {
 
 func YouWin(name string) {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Printf("|   Congratulations you win the game: %-15s |\n", name)
+	fmt.Printf("|   Congratulations you win the game: %-15s|\n", name)
 	fmt.Println("+----------------------------------------------------+")
 }
 

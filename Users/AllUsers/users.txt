@@ -4,3 +4,7 @@ anvar,1234
 zufar,12345
 shahzod,shah2005
 anvarovich,$12345678$
+umar_3,12345
+qodirkodir,qwerty
+bobur,101981810bobb
+mahmud,mahmud5

@@ -32,7 +32,7 @@ func main() {
 			globalfunctions.UpdateUserInfo()
 		} else if choose == 4 {
 			globalfunctions.SystemClear()
-			game.GamesMain() 
+			game.GamesMain()
 		} else {
 			break
 		}

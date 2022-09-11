@@ -2,9 +2,9 @@ What is capital of Uzbekistan?|Tashkent
 What is the biggest country in the world?|Russia
 Who is the creator of Python programming language?|Guido van Rossum
 Who is the CEO of Google?|Sundar Pichai
-Who is the creator of Python programming language?|Dennis Ritchie
+Who is the creator of C programming language?|Dennis Ritchie
 What is the biggest E-car company in the world?|Tesla
 What is the biggest search engine?|Google
 Who is the first President of the USA?|George Washington
 What is capital of Canada?|Ottawa
-What is shorot form of JavaScript Object Notation?|JSON
+What is short form of JavaScript Object Notation?|JSON
