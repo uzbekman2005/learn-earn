@@ -3,6 +3,7 @@ package tictacconsole
 import (
 	"fmt"
 )
+
 var IsSecondUserRegistered bool
 
 func TicMainMenu() {
@@ -48,7 +49,7 @@ func ShowBoard(board [][]string) {
 
 func YouWin(name string) {
 	fmt.Println("+----------------------------------------------------+")
-	fmt.Printf("|   Congratulations you win the game: %-15s|\n", name)
+	fmt.Printf("|   Congratulations you win the game: %-14s|\n", name)
 	fmt.Println("+----------------------------------------------------+")
 }
 
@@ -59,5 +60,17 @@ func SinglePlayerMenu() {
 	fmt.Println("|    1. Easy                                         |")
 	fmt.Println("|    2. Hard                                         |")
 	fmt.Println("|    3. Exit                                         |")
+	fmt.Println("+----------------------------------------------------+")
+}
+
+func YouLost() {
+	fmt.Println("+----------------------------------------------------+")
+	fmt.Printf("|   Unfortunately you lost the game                   |\n")
+	fmt.Println("+----------------------------------------------------+")
+}
+
+func Draw() {
+	fmt.Println("+----------------------------------------------------+")
+	fmt.Printf("|   You guys played equally                           |\n")
 	fmt.Println("+----------------------------------------------------+")
 }
