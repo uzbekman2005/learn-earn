@@ -1,7 +1,9 @@
 package registration
 
 import (
+	"errors"
 	"learn/config"
+	"learn/database"
 	frontend "learn/frontEnd"
 	"learn/globalfunctions"
 )
@@ -15,7 +17,13 @@ func RegistrationMain() int {
 		if choose == 1 {
 			return SignUpMain()
 		} else if choose == 2 {
-			return LogInMain(false)
+			if err := LogInMainWithDb(&config.CurrentUser); err == nil {
+				globalfunctions.WriteErrorsToFile(err)
+				return 1
+			} else {
+				globalfunctions.SystemClear()
+				frontend.WasRegistered()
+			}
 		} else {
 			break
 		}
@@ -32,19 +40,38 @@ func SignUpMain() int {
 	config.CurrentUser.HighScore = 0
 	config.CurrentUser.Country = globalfunctions.InputString("Country: ")
 	config.CurrentUser.DateOfBirth = globalfunctions.InputDate("Date of birth: ")
-	globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
-	globalfunctions.WriteToUserstxt()
+	//Writing to database
+	err := database.SetInfo(config.CurrentUser, config.Client)
+	globalfunctions.CheckErr(err)
+	//Writing to File
 	frontend.SuccesSignUp()
 	return 1
 }
 
+func LogInMainWithDb(user *config.User) error {
+	globalfunctions.SystemClear()
+	frontend.LogInMenu()
+	userNameinput := globalfunctions.InputString("Username: ")
+	password := globalfunctions.InputString("Password: ")
+	if database.IsInDataBase(userNameinput, password, config.Client) {
+		err := database.GetInfo(user, userNameinput, config.Client)
+		globalfunctions.CheckErr(err)
+		return nil
+	} else {
+		globalfunctions.SystemClear()
+		return errors.New("INVALID DATA")
+	}
+}
+
+/* This Function is not working anymore
 func LogInMain(isSecon bool) int {
 	globalfunctions.SystemClear()
 	for {
 		frontend.LogInMenu()
 		userNameinput := globalfunctions.InputString("Username: ")
 		password := globalfunctions.InputString("Password: ")
-		if globalfunctions.IsRightLogin(userNameinput, password) && userNameinput != config.CurrentUser.Username{
+
+		if globalfunctions.IsRightLogin(userNameinput, password) && userNameinput != config.CurrentUser.Username {
 
 			err := globalfunctions.ReadSpeicificUser(userNameinput, isSecon)
 			globalfunctions.CheckErr(err)
@@ -65,3 +92,4 @@ func LogInMain(isSecon bool) int {
 
 	}
 }
+*/

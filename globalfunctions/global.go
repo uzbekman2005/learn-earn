@@ -1,19 +1,17 @@
 package globalfunctions
 
 import (
-	"encoding/json"
 	"fmt"
 	"learn/config"
+	"learn/database"
 	"os"
 	"os/exec"
 	"strconv"
-	"strings"
 	"time"
 	"unicode"
 )
 
-
-// This funcion is used To write occured errors to error.txt file 
+// This funcion is used To write occured errors to error.txt file
 // This is done to make it easier to debug
 func WriteErrorsToFile(err error) {
 	file, errr := os.OpenFile("/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/errors.txt", os.O_RDONLY|os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
@@ -25,7 +23,7 @@ func WriteErrorsToFile(err error) {
 }
 
 // This Function is used to read int info from the Console
-// This funcion will only take int 
+// This funcion will only take int
 // if it is string it will not take it and reasks to enter int
 func InputNum(hint string) int {
 	var temp string
@@ -49,7 +47,7 @@ func InputString(hint string) string {
 	return temp
 }
 
-// This function handles errors 
+// This function handles errors
 // if Error Exist it will Write to errors.txt file and print theerror
 func CheckErr(err error) {
 	if err != nil {
@@ -58,9 +56,7 @@ func CheckErr(err error) {
 	}
 }
 
-
-
-// This Function is used Whether username is valid and 
+// This Function is used Whether username is valid and
 // unique with the help of IsUniqueUserName()
 func IsValidUserName(username string) bool {
 	if !unicode.IsLetter(rune(username[0])) {
@@ -71,9 +67,11 @@ func IsValidUserName(username string) bool {
 			return false
 		}
 	}
-	return true && IsUniqueUserName(username)
+	return database.IsUniqueUserName(username, config.Client)
 }
 
+// These functions are not working anymore
+/*
 // This function Checks whether the username was used or not
 func IsUniqueUserName(username string) bool {
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
@@ -96,7 +94,7 @@ func WriteNewUserToFile(username string, isSecond bool) {
 	var err error
 	if !isSecond {
 		data, err = json.Marshal(config.CurrentUser)
-	}else {
+	} else {
 		data, err = json.Marshal(config.SecondUser)
 	}
 	CheckErr(err)
@@ -117,7 +115,7 @@ func WriteToUserstxt() {
 	f.WriteString(fmt.Sprintf("%s,%s\n", config.CurrentUser.Username, config.CurrentUser.Password))
 }
 
-//This function checks whether username and password is right
+// This function checks whether username and password is right
 func IsRightLogin(username, password string) bool {
 	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
 	info, err := os.ReadFile(filename)
@@ -138,14 +136,14 @@ func ReadSpeicificUser(username string, isSecon bool) error {
 	filename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", username)
 	content, err := os.ReadFile(filename)
 	CheckErr(err)
-	if isSecon{
+	if isSecon {
 		err = json.Unmarshal(content, &config.SecondUser)
-	}else{
+	} else {
 		err = json.Unmarshal(content, &config.CurrentUser)
 	}
 	return err
 }
-
+*/
 // This function is used to cleaer console screen
 func SystemClear() {
 	c := exec.Command("clear")

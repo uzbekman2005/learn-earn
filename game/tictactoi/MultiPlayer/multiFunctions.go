@@ -2,6 +2,7 @@ package multiplayer
 
 import (
 	"learn/config"
+	"learn/database"
 	tictacconsole "learn/game/tictactoi/tictacConsole"
 	"learn/globalfunctions"
 	"learn/registration"
@@ -9,7 +10,10 @@ import (
 
 // This function is used to log in or sign up second user
 func LoginSeconduser() int {
-	return registration.LogInMain(true)
+	if err := registration.LogInMainWithDb(&config.SecondUser); err != nil {
+		return 0
+	}
+	return 1
 }
 
 var board [][]string
@@ -48,12 +52,12 @@ func MultiPlayerPlay() int {
 				config.SecondUser.Score += 20
 				config.SecondUser.HighScore += 20
 				tictacconsole.YouWin(config.SecondUser.First_name)
-				globalfunctions.WriteNewUserToFile(config.SecondUser.Username, true)
+				database.SetInfo(config.SecondUser, config.Client)
 			} else {
 				config.CurrentUser.Score += 20
 				config.CurrentUser.HighScore += 20
 				tictacconsole.YouWin(config.CurrentUser.First_name)
-				globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
+				database.SetInfo(config.CurrentUser, config.Client)
 			}
 			return 1
 		} else if IsEqual(board) {
@@ -109,7 +113,10 @@ func IsEqual(board [][]string) bool {
 
 	config.SecondUser.Score += 10
 	config.SecondUser.HighScore += 10
-	globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
-	globalfunctions.WriteNewUserToFile(config.SecondUser.Username, true)
+	if err := database.SetInfo(config.CurrentUser, config.Client); err != nil {
+		globalfunctions.CheckErr(err)
+	}
+	err := database.SetInfo(config.SecondUser, config.Client)
+	globalfunctions.CheckErr(err)
 	return true
 }

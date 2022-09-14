@@ -1,12 +1,9 @@
 package globalfunctions
 
 import (
-	"fmt"
-	"io/fs"
 	"learn/config"
+	"learn/database"
 	frontend "learn/frontEnd"
-	
-	"os"
 	"strconv"
 	"strings"
 )
@@ -28,16 +25,22 @@ func UpdateUserInfo() {
 		} else if choose == 4 {
 			config.CurrentUser.DateOfBirth = InputDate("Date of birth ")
 		} else if choose == 5 {
-			updatePassword(config.CurrentUser.Username)
+			updatePassword()
 		} else if choose == 6 {
+			username := config.CurrentUser.Username
 			UpdateUsername(config.CurrentUser.Password)
+			if err := config.Client().Del(username).Err(); err != nil {
+				CheckErr(err)
+			}
 		} else {
 			// Changes are written to files user.txt username.json
-			WriteNewUserToFile(config.CurrentUser.Username, false)
 			SystemClear()
 			break
 		}
-
+		// WriteNewUserToFile(config.CurrentUser.Username, false)
+		if err := database.SetInfo(config.CurrentUser, config.Client); err != nil {
+			CheckErr(err)
+		}
 	}
 }
 func GetUserName() string {
@@ -55,7 +58,7 @@ func GetPassword() string {
 	for {
 		frontend.PasswordRequirement()
 		temp = InputString("Password: ")
-		if ValidPassword(temp){
+		if ValidPassword(temp) {
 			return temp
 		}
 	}
@@ -64,44 +67,28 @@ func GetPassword() string {
 func ValidPassword(password string) bool {
 	// Password to be valid it should be at least 5 in length
 	// don't contain commas
-	if len(password) < 5 || strings.Contains(password, ",") || strings.Contains(password, " "){
+	if len(password) < 5 || strings.Contains(password, ",") || strings.Contains(password, " ") {
 		return false
 	}
 	return true
 
 }
 
-
 func UpdateUsername(password string) {
-	newUsername := GetUserName()
-	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
-	content, err := os.ReadFile(filename)
-	CheckErr(err)
-	contentstr := string(content)
-	oldText := fmt.Sprintf("%s,%s", config.CurrentUser.Username, password)
-	replaceTxt := fmt.Sprintf("%s,%s", newUsername, password)
-	contentstr = strings.ReplaceAll(contentstr, oldText, replaceTxt)
-	os.WriteFile(filename, []byte(contentstr), fs.FileMode(os.O_WRONLY))
-	// WriteNewUserToFile()
-	oldFilename := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", config.CurrentUser.Username)
-	newFileName := fmt.Sprintf("/home/azizbek/go/src/Projects/learn-earn/Users/Individualuser/%s.json", newUsername)
-	err = os.Rename(oldFilename, newFileName)
-	CheckErr(err)
-	config.CurrentUser.Username = newUsername
-	fmt.Println("Success")
+	for {
+		newUsername := GetUserName()
+		if !database.IsInDataBase(newUsername, password, config.Client) {
+			config.CurrentUser.Username = newUsername
+			return
+		} else {
+			SystemClear()
+		}
+	}
 }
 
 // This Function is used to update password
-func updatePassword(username string) {
+func updatePassword() {
 	newPassword := GetPassword()
-	filename := "/home/azizbek/go/src/Projects/learn-earn/Users/AllUsers/users.txt"
-	content, err := os.ReadFile(filename)
-	CheckErr(err)
-	contentstr := string(content)
-	oldText := fmt.Sprintf("%s,%s", username, config.CurrentUser.Password)
-	replaceTxt := fmt.Sprintf("%s,%s", username, newPassword)
-	contentstr = strings.ReplaceAll(contentstr, oldText, replaceTxt)
-	os.WriteFile(filename, []byte(contentstr), fs.FileMode(os.O_WRONLY))
 	config.CurrentUser.Password = newPassword
 }
 

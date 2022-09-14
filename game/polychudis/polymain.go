@@ -2,6 +2,7 @@ package polychudis
 
 import (
 	"learn/config"
+	"learn/database"
 	graphs "learn/game/polychudis/Graphs"
 	ansatonce "learn/game/polychudis/ansAtOnce"
 	ansbyletter "learn/game/polychudis/ansbyletter"
@@ -35,7 +36,7 @@ func MainPolichudis() {
 			if res == 1 {
 				config.CurrentUser.Score += 10
 				config.CurrentUser.HighScore += 10
-				globalfunctions.WriteNewUserToFile(config.CurrentUser.Username, false)
+				database.SetInfo(config.CurrentUser, config.Client)
 			}
 			if doStop == 1 {
 				globalfunctions.SystemClear()

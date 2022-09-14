@@ -2,6 +2,7 @@ package hardpart
 
 import (
 	"learn/config"
+	"learn/database"
 	multiplayer "learn/game/tictactoi/MultiPlayer"
 	tictacconsole "learn/game/tictactoi/tictacConsole"
 	"learn/globalfunctions"
@@ -36,6 +37,7 @@ func HardMain(board [][]string) {
 			if rounds%2 == 1 {
 				config.CurrentUser.Score += 50
 				config.CurrentUser.HighScore += 50
+				database.SetInfo(config.CurrentUser, config.Client)
 				tictacconsole.YouWin(config.CurrentUser.First_name)
 			} else {
 				tictacconsole.YouLost()
@@ -45,6 +47,7 @@ func HardMain(board [][]string) {
 			tictacconsole.Draw()
 			config.CurrentUser.Score += 25
 			config.CurrentUser.HighScore += 25
+			database.SetInfo(config.CurrentUser, config.Client)
 			return
 		}
 		rounds++

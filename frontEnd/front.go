@@ -102,8 +102,6 @@ func UsernameRequirement() {
 func WasRegistered() {
 	fmt.Println("+----------------------------------------------------+")
 	fmt.Println("+- 	 Did you really register before?             -+")
-	fmt.Println("+- 1. Yes                                           -+")
-	fmt.Println("+- 2. No I will register now                        -+")
 	fmt.Println("+----------------------------------------------------+")
 }
 
