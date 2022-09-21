@@ -19,7 +19,7 @@ var SecondUser User
 func Client() *redis.Client {
 	return redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
-		Password: "",
-		DB:       0,
+		Password: "tplink2001",
+		DB:       1,
 	})
 }
